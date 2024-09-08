@@ -1,0 +1,61 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.baseapp"
+    compileSdk = 34 // Or use `flutter.compileSdkVersion`
+
+    defaultConfig {
+        applicationId = "com.example.baseapp"
+        minSdk = 22 // Or use `flutter.minSdkVersion`
+        targetSdk = 33 // Or use `flutter.targetSdkVersion`
+        
+        // These are placeholders; replace with actual values or methods to get them
+        versionCode = 1 // Replace with your actual version code
+        versionName = "1.0" // Replace with your actual version name
+        
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        prod {
+            dimension "app"
+            applicationId "com.baseapp.prod"
+            versionCode 1 // Replace with your actual version code
+            versionName "1.0" // Replace with your actual version name
+        }
+        dev {
+            dimension "app"
+            applicationId "com.baseapp.dev"
+            versionCode 1 // Replace with your actual version code
+            versionName "1.0" // Replace with your actual version name
+        }
+    }
+
+    buildTypes {
+        release {
+            // Configure signing for release builds
+            signingConfig = signingConfigs.debug // Use a proper release signing config
+            minifyEnabled false // Enable if you need ProGuard or R8 obfuscation
+            shrinkResources false
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
